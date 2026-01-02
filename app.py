@@ -213,7 +213,7 @@ Avoid definitive diagnostic claims.
 """
 
     with st.spinner("Generating radiology report..."):
-     response = hf_client.chat.completions.create(
+     response = hf_client.chat(
         messages=[
             {
                 "role": "system",
@@ -228,7 +228,8 @@ Avoid definitive diagnostic claims.
         temperature=0.2
     )
 
-    report_text = response.choices[0].message.content.strip()
+    report_text = response["choices"][0]["message"]["content"].strip()
+
 
 
     st.markdown(
