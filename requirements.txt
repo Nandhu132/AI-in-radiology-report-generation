@@ -6,3 +6,4 @@ pandas
 Pillow
 boto3
 python-dotenv
+huggingface-hub
