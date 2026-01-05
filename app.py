@@ -56,7 +56,7 @@ body { background-color: #0e1117; }
 load_dotenv()
 
 MODEL_PATH = "densenet121_chestxray.pth"
-HF_MODEL_ID = "mistralai/Mistral-7B-Instruct-v0.2"
+HF_MODEL_ID = "Qwen/Qwen2.5-7B-Instruct"
 
 LABEL_COLS = [
     'Atelectasis', 'Cardiomegaly', 'Consolidation', 'Edema',
@@ -206,16 +206,16 @@ Avoid definitive diagnostic claims.
 """
 
     with st.spinner("Generating radiology report..."):
-        response = hf_client.chat.completions.create(
+       response = hf_client.chat.completions.create(
     messages=[
-        {"role": "system", "content": "You are a medical radiologist."},
+        {"role": "system", "content": "You are an expert radiologist."},
         {"role": "user", "content": PROMPT}
     ],
     max_tokens=500,
     temperature=0.2
 )
 
-        report_text = response.choices[0].message.content.strip()
+       report_text = response.choices[0].message.content.strip()
 
 
     st.markdown(
